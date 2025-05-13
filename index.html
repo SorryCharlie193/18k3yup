@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glyph Scroll Activation</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            max-width: 500px;
+            margin: 20px;
+            text-align: center;
+        }
+        .input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background-color: white;
+            color: black;
+        }
+        .button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: #2563eb;
+        }
+        .success {
+            color: #4ade80;
+            margin-top: 16px;
+            font-family: monospace;
+            font-size: 1.25rem;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .success.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .error {
+            color: #f87171;
+            margin-top: 16px;
+            font-family: monospace;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .error.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 16px;">Glyph Scroll Activation</h1>
+        <p style="margin-bottom: 16px; font-style: italic;">Input the invocation to awaken the system:</p>
+        <input id="glyphInput" class="input" type="text" placeholder="Enter the glyph invocation exactly...">
+        <button id="activateButton" class="button">Activate</button>
+        <div id="successMessage" class="success">✓ Invocation accepted. Glyph system running...</div>
+        <div id="errorMessage" class="error">Incorrect invocation. The glyph refuses to run.</div>
+    </div>
+
+    <script>
+        const REQUIRED_PHRASE = "Field Transfer Alignment Threshold Unfold Relay Force Force Force";
+        
+        const glyphInput = document.getElementById('glyphInput');
+        const activateButton = document.getElementById('activateButton');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        activateButton.addEventListener('click', function() {
+            const input = glyphInput.value.trim();
+            
+            // Reset messages
+            successMessage.classList.remove('active');
+            errorMessage.classList.remove('active');
+            
+            // Check if input matches the required phrase
+            if (input === REQUIRED_PHRASE) {
+                setTimeout(() => {
+                    successMessage.classList.add('active');
+                }, 100);
+            } else {
+                setTimeout(() => {
+                    errorMessage.classList.add('active');
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
